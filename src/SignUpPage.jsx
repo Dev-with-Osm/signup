@@ -1,18 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import googleIcon from "./assets/google.png";
 import xIcon from "./assets/x.png";
 import linkIcon from "./assets/174857.png";
 import gitIcon from "./assets/25231.png";
+import Eye from "./icons/Eye";
+import EyeCrossed from "./icons/EyeCrossed";
 
 export default function SignUpPage() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmedPassword: "",
+  });
+  console.log(formData);
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  const toggleConfirmedPasswordVisibility = () => {
+    setShowConfirmedPassword(!showConfirmedPassword);
+  };
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    if (formData.password !== formData.confirmedPassword)
+      return alert("Passwords do not match");
+    alert("sign up successs");
+  };
   return (
-    <div className="flex items-center justify-center h-full my-10 p-5">
-      <div className="bg-white border border-gray-400 rounded-xl shadow-sm p-10">
-        <div className="mb-8">
+    <div
+      onSubmit={submitForm}
+      className="flex items-center justify-center h-full p-5"
+    >
+      <div className="bg-white border border-gray-400 rounded-xl shadow-sm px-10 py-5">
+        <div className="mb-4">
           <p className="font-bold text-gray-400 text-base">Welcome! </p>
           <h1 className="font-bold text-[26px]">Sign up to CFP</h1>
         </div>
-        <form className="flex flex-col gap-5">
+        <form className="flex flex-col gap-3">
           <div className="flex gap-5 justify-between">
             <div className="flex w-full relative flex-col gap-2">
               <label className="text-xs font-bold">First Name*</label>
@@ -34,6 +69,8 @@ export default function SignUpPage() {
                 type="text"
                 placeholder="First Name"
                 required
+                id="firstName"
+                onChange={handleChange}
                 className="w-full border rounded-full pl-9 p-2  placeholder:text-xs placeholder:font-bold  "
               />
             </div>
@@ -57,6 +94,8 @@ export default function SignUpPage() {
                 type="text"
                 placeholder="Last Name"
                 required
+                id="lastName"
+                onChange={handleChange}
                 className="w-full border rounded-full pl-9 p-2 placeholder:text-xs placeholder:font-bold  "
               />
             </div>
@@ -79,36 +118,21 @@ export default function SignUpPage() {
                 type="email"
                 placeholder="Email Address"
                 required
+                id="email"
+                onChange={handleChange}
                 className="w-full border pl-10 rounded-full p-2 placeholder:text-xs placeholder:font-bold"
               />
             </div>
           </div>
           <div className="flex relative flex-col gap-2">
             <label className="text-xs font-bold">Password*</label>
-            <div className="absolute bottom-2.5 right-3">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0.75 9C0.75 9 3.75 3 9 3C14.25 3 17.25 9 17.25 9C17.25 9 14.25 15 9 15C3.75 15 0.75 9 0.75 9Z"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M9 11.25C10.2426 11.25 11.25 10.2426 11.25 9C11.25 7.75736 10.2426 6.75 9 6.75C7.75736 6.75 6.75 7.75736 6.75 9C6.75 10.2426 7.75736 11.25 9 11.25Z"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </div>
+            <button
+              type="button"
+              className="absolute bottom-2.5 right-3"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <Eye /> : <EyeCrossed />}
+            </button>
             <div className="absolute left-3 bottom-2.5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -127,38 +151,22 @@ export default function SignUpPage() {
             </div>
             <div className="flex w-full flex-col gap-4">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="e.g,: XÆ A-12"
                 required
+                id="password"
+                onChange={handleChange}
                 className="w-full border rounded-full pl-10 p-2 placeholder:text-xs placeholder:font-bold "
               />
             </div>
           </div>
           <div className="flex relative flex-col gap-2">
             <label className="text-xs font-bold">Confirm password*</label>
-            <div className="absolute bottom-2.5 right-3">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0.75 9C0.75 9 3.75 3 9 3C14.25 3 17.25 9 17.25 9C17.25 9 14.25 15 9 15C3.75 15 0.75 9 0.75 9Z"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M9 11.25C10.2426 11.25 11.25 10.2426 11.25 9C11.25 7.75736 10.2426 6.75 9 6.75C7.75736 6.75 6.75 7.75736 6.75 9C6.75 10.2426 7.75736 11.25 9 11.25Z"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+            <div
+              className="absolute bottom-2.5 right-3"
+              onClick={toggleConfirmedPasswordVisibility}
+            >
+              {showConfirmedPassword ? <Eye /> : <EyeCrossed />}
             </div>
             <div className="absolute left-3 bottom-2.5">
               <svg
@@ -178,18 +186,24 @@ export default function SignUpPage() {
             </div>
             <div className="flex w-full flex-col gap-4">
               <input
-                type="password"
+                type={showConfirmedPassword ? "text" : "password"}
                 placeholder="e.g,: XÆ A-12"
                 required
+                id="confirmedPassword"
+                onChange={handleChange}
                 className="w-full border rounded-full pl-10 p-2 placeholder:text-xs placeholder:font-bold "
               />
             </div>
           </div>
           <p className="text-[11px] leading-5 ">
             By continuing you agree to CFP's{" "}
-            <span className="text-[#5f4080] font-bold">Terms of Services</span>{" "}
+            <span className="text-[#5f4080] font-bold cursor-pointer hover:underline">
+              Terms of Services
+            </span>{" "}
             and acknowledge <br /> you've read our{" "}
-            <span className="text-[#5f4080] font-bold">Privacy Police</span>
+            <span className="text-[#5f4080] font-bold cursor-pointer hover:underline">
+              Privacy Police
+            </span>
           </p>
 
           <button className="bg-[#5f4080]  p-2.5 rounded-full text-white text-lg font-bold">

@@ -3,8 +3,9 @@ import SignUpPage from "./SignUpPage";
 
 export default function App() {
   return (
-    <div>
+    <div className="flex justify-center">
       <SignUpPage />
+      {/* <SignUpPage /> */}
     </div>
   );
 }
