@@ -9,6 +9,7 @@ import EyeCrossed from "./icons/EyeCrossed";
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -16,7 +17,7 @@ export default function SignUpPage() {
     password: "",
     confirmedPassword: "",
   });
-  console.log(formData);
+  // console.log(formData);
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -34,7 +35,7 @@ export default function SignUpPage() {
   const submitForm = (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmedPassword)
-      return alert("Passwords do not match");
+      return setError("Passwords do not match");
     alert("sign up successs");
   };
   return (

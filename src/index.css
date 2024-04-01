@@ -9,3 +9,61 @@ body{
   font-family: "DM Sans", sans-serif;
 
 }
+
+/* @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap'); */
+
+.ModalOpen {
+  animation: openModal 0.4s ease-out forwards;
+}
+.ModalClosed {
+  animation: closeModal 0.4s ease-out forwards;
+}
+
+@keyframes openModal {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(0);   }
+}
+
+@keyframes closeModal {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%);}
+}
+   
+  .auth-bg {
+    background-image: url('https://res.cloudinary.com/dizlyig0d/image/upload/v1702981188/ltysh5naohz7vvjysigs.png');
+  }
+  .box-shadow:focus{
+    box-shadow: 0 0 0 2px rgba(28, 5, 42, 0.3);
+    outline: 0;
+  }
+  .box-shadow-error:focus{
+    box-shadow: 0 0 0 2px #ff4d4f;
+    outline: 0;
+    border :#ff4d4f;
+  }
+  #kc-header{
+    display: none;
+  }
+  .pf-m-danger{
+    display: none;
+  }
+  .pf-m-warning{
+    display: none;
+  }
+
+  #kc-header-wrapper {
+    display: none;
+}
+.alert-warning {
+  display: none;
+}
+
+#sign-in-message{
+  font-family: 'DM Sans', sans-serif;
+  font-weight: bold;
+}
+
+.logo {
+  width: 60px; /* Set the width to 48px */
+  height: 48px; /* Set the height to 48px */
+}
