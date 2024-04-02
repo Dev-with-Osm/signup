@@ -4,50 +4,92 @@ import xIcon from "./assets/x.png";
 import linkIcon from "./assets/174857.png";
 import gitIcon from "./assets/25231.png";
 import Bg from "./assets/Bg";
+import ArrowUp from "./icons/ArrowUp";
+import ArrowDown from "./icons/ArrowDown";
 // import bg from "./assets/bg.jpg";
 
 export default function LoginCfp() {
   const [clicked, setClicked] = useState(false);
-  console.log(clicked);
-  const bgClass = () => {
+  const clickedScroll = () => {
     if (clicked) {
-      return " h-[100vh] duration-500 ease-in-out ";
+      return "translate-y-full"; // 96 corresponds to 24rem or 900px assuming the default Tailwind CSS configuration
     }
-    return " ";
+    return "translate-y-[45%]"; // 24 corresponds to 6rem or 250px assuming the default Tailwind CSS configuration
   };
+  console.log(clicked);
+
   return (
-    <div class="bg-[#F7F4FA] relative flex flex-col md:flex-row  w-full">
+    <div class="bg-[#F7F4FA] relative flex flex-col md:flex-row   w-full">
       <div
         class={
-          "auth-bg bg-center bg-no-repeat bg-cover bg-local w-full  md:flex flex-col justify-between items-center p-3 duration-500 ease-in-out " +
-          bgClass()
+          "auth-bg bg-center bg-no-repeat bg-cover bg-local w-full h-screen md:flex flex-col justify-between items-center p-3  "
         }
       >
         <div></div>
-        <div class="flex flex-col justify-center items-center gap-12 w-full text-center">
+        <div class="flex flex-col justify-center items-center gap-3 w-full text-center mt-4 tra">
           {/* <img src={bg} alt="Login Logo" class="w-4/5 p-0 m-0" /> */}
           <Bg />
           <div class="w-3/4 gap-6 flex flex-col justify-center items-center">
-            <p class="text-white font-segoe text-base font-light">
+            <p class="text-white font-segoe text-base font-light hidden md:flex">
               Welcome back to call for participants backoffice team
             </p>
+            <h1 className=" md:hidden text-white text-xl font-semibold">
+              Devoxx Morocco 2024
+            </h1>
           </div>
         </div>
-        <div>
+        <div className="md:block hidden">
           <p class="text-white font-segeo font-thin text-sm tracking-wider">
             All right reserved to @xHub | 2023
           </p>
         </div>
       </div>
 
-      <button
-        onClick={() => setClicked(!clicked)}
-        className="text-red-900 z-50 absolute"
+      <div
+        // style={{ transform: clickedScroll(), transition: "ease-in-out .5s" }}
+        class={
+          " md:w-3/5 w-full md:translate-y-0 absolute md:relative  -mt-40 flex flex-col md:flex-row justify-center transition ease-in-out duration-500 items-center " +
+          clickedScroll()
+        }
       >
-        Scrool
-      </button>
-
-      <div class=" md:w-3/5 w-full flex justify-center items-center ">
+        <div className="absolute -top-14" onClick={() => setClicked(!clicked)}>
+          {clicked ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6 text-white"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m4.5 18.75 7.5-7.5 7.5 7.5"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m4.5 12.75 7.5-7.5 7.5 7.5"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6 text-white"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
+              />
+            </svg>
+          )}
+        </div>
         <form
           id="kc-register-form"
           action="${url.registrationAction}"
@@ -310,7 +352,7 @@ export default function LoginCfp() {
 
           <p class="text-[11px] leading-5 mt-7 mb-2">
             By continuing you agree to CFP's
-            <span class="text-[#5f4080] font-bold cursor-pointer hover:underline">
+            <span class="text-[#5f4080] font-bold cursor-pointer hover:underline ">
               Terms of Services
             </span>
             and acknowledge <br /> you've read our
@@ -356,6 +398,11 @@ export default function LoginCfp() {
                 type="submit"
               /> */}
             </div>
+          </div>
+          <div className="md:hidden text-center mt-7 mb-2 ">
+            <p class="text-black   text-sm ">
+              All right reserved to @xHub | 2023
+            </p>
           </div>
         </form>
       </div>

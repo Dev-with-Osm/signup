@@ -4,8 +4,10 @@ import LoginCfp from "./LoginCfp";
 
 export default function App() {
   return (
-    <div className="">
+    <>
       <LoginCfp />
-    </div>
+
+      {/* <SignUpPage /> */}
+    </>
   );
 }
